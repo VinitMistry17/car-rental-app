@@ -19,7 +19,7 @@ class OnboardingPage extends StatelessWidget {
                     fit: BoxFit.cover,
                     alignment: const FractionalOffset(0.8, 0.5),
                   ),
-                )
+                ),
               ),
             ),
             
@@ -51,11 +51,11 @@ class OnboardingPage extends StatelessWidget {
                       height: 50,
                       child: ElevatedButton(
                       onPressed: (){},
+                          child: Text("Let's Go"),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,   // 👈 background white
                           foregroundColor: Colors.black,
                         ),
-                          child: Text("Let's Go"),
                       ),
                     ),
                   ],

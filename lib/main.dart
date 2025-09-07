@@ -1,4 +1,5 @@
-import 'package:car_rental_app/onboarding_page.dart';
+import 'package:car_rental_app/presentation/pages/car_list_screen.dart';
+import 'package:car_rental_app/presentation/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: OnboardingPage(),
+      home: CarListScreen(),
     );
   }
 }
