@@ -14,7 +14,15 @@ class CarListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Car List'),
+        title: Text(
+            'Choose Your Car',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          )
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey[800],
+        foregroundColor: Colors.white,
       ),
       body: ListView.builder(
         itemCount: cars.length,
