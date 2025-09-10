@@ -61,10 +61,16 @@ class OnboardingPage extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           // Navigate to CarListScreen on button tap
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => CarListScreen()),
-                          );
+                          //pushAndRemoveUntil() - Nayi screen par navigate
+                          // karta hai aur previous screens ko remove kar deta hai
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (context) => CarListScreen())
+                              //(route) => false - Yeh condition hai jo kehti hai ki
+                              // koi bhi previous route stack mein nahi rehna chahiye
+                              ,(route) => false);
+
+                          //Result: CarListScreen par jaayega aur back button dab kar
+                          // user kisi previous screen par nahi ja sakta
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white, // button background
