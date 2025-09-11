@@ -6,7 +6,21 @@ class FirebaseCarDataSource{
   FirebaseCarDataSource(this.firestore);
 
   Future<List<Car>> getCars() async{
-    var snapShot = await firestore.collection('cars').get();
-    return snapShot.docs.map((doc) => Car.fromMap(doc.data())).toList();
+    try {
+      print('Fetching cars from Firestore...');
+      var snapShot = await firestore.collection('cars').get();
+      print('Found ${snapShot.docs.length} documents');
+
+      final cars = snapShot.docs.map((doc) {
+        print('Car data: ${doc.data()}');
+        return Car.fromMap(doc.data());
+      }).toList();
+
+      print('Converted ${cars.length} cars');
+      return cars;
+    } catch (e) {
+      print('Error fetching cars: $e');
+      rethrow;
+    }
   }
 }

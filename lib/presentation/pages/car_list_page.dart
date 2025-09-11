@@ -45,7 +45,21 @@ class CarListScreen extends StatelessWidget {
               );
             } else if (state is CarError) {
               return Center(
-                child: Text('Error: ${state.message}'),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.error, size: 64, color: Colors.red),
+                    SizedBox(height: 16),
+                    Text('Error: ${state.message}'),
+                    SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<CarBloc>().add(LoadCars());
+                      },
+                      child: Text('Retry'),
+                    ),
+                  ],
+                ),
               );
             }
             return const SizedBox.shrink();

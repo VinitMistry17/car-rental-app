@@ -14,47 +14,59 @@ class CarCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.push(
-          context,
-        MaterialPageRoute(builder: (con) => CarDetailsPage(car: car,))
+        context,
+        MaterialPageRoute(builder: (con) => CarDetailsPage(car: car)),
       ),
       child: Container(
-        // Outer spacing for the card
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        // Inner spacing within the card
         padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.grey[200], // Light background color
-          borderRadius: BorderRadius.circular(20), // Rounded corners
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12, // Soft shadow color
+              color: Colors.black12,
               spreadRadius: 5,
               blurRadius: 10,
             ),
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Align content to start
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Car Image
-            Image.asset(
-              'assets/images/mercedes1.png',
-              height: 120,
+            // Smooth dynamic car image with rounded corners
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(
+                  _getCarImagePath(car.model),
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[300],
+                      child: Center(
+                        child: Icon(Icons.directions_car,
+                            size: 40, color: Colors.grey[600]),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
             SizedBox(height: 10),
-      
+
             // Car Model Name
             Text(
               car.model,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-      
+
             // Car details: distance, fuel capacity, price
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Distance info
                 Row(
                   children: [
                     Image.asset(
@@ -66,8 +78,6 @@ class CarCard extends StatelessWidget {
                     Text('${car.distance.toStringAsFixed(0)} km'),
                   ],
                 ),
-      
-                // Fuel capacity info
                 Row(
                   children: [
                     Image.asset(
@@ -79,8 +89,6 @@ class CarCard extends StatelessWidget {
                     Text('${car.fuelCapacity.toStringAsFixed(0)}L'),
                   ],
                 ),
-      
-                // Price per hour
                 Text(
                   '\$${car.pricePerHour.toStringAsFixed(2)}/h',
                   style: TextStyle(fontSize: 16),
@@ -91,5 +99,21 @@ class CarCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // Function to get correct image based on car model
+  String _getCarImagePath(String carModel) {
+    String model = carModel.toLowerCase();
+
+    if (model.contains('mercedes')) {
+      return 'assets/images/mercedes2.png';
+    } else if (model.contains('bmw')) {
+      return 'assets/images/bmw.png';
+    } else if (model.contains('audi')) {
+      return 'assets/images/audi.png';
+    } else if (model.contains('tesla')) {
+      return 'assets/images/tesla.png';
+    }
+    return 'assets/images/default_car.png';
   }
 }
