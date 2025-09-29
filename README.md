@@ -1,16 +1,19 @@
 # car_rental_app
 
-A new Flutter project.
+My Flutter Car Rental App! 
 
-## Getting Started
+Built a full-stack mobile application with:
 
-This project is a starting point for a Flutter application.
+- Clean Architecture (Domain, Data, Presentation layers)
 
-A few resources to get you started if this is your first Flutter project:
+- Firebase Firestore for real-time data
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- BLoC state management for scalable UI
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Custom widgets and smooth navigation
+
+- Dynamic car listings with detailed views
+
+- Interactive map integration using Flutter Map
+
+Key learning: Implementing proper separation of concerns and dependency injection made the codebase much more maintainable and testable.
